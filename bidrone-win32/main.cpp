@@ -1,26 +1,67 @@
 //Includes
 #include <Windows.h>
 
-//Global variables
+//Libraries
+#pragma comment(lib,"d3d10.lib")
+
+////////////////////////////////////
+// Global variables
+
+//Wnd
 LPCTSTR WndClassName = "firstwindow";
 HWND hwnd = NULL;
 const int Width = 800;
 const int Height = 600;
 
+//D3D10
+ID3D10Device* d3dDevice;
+IDXGISwapChain* SwapChain;
+ID3D10RenderTargetView* RenderTargetView;
+
+//temp vars
+float red = 0.0f;
+float green = 0.0f;
+float blue = 0.0f;
+int colormodr = 1;
+int colormodg = 1;
+int colormodb = 1;
+////////////////////////////////////
+
+////////////////////////////////////
 //Function prototypes
+
+//Wnd-Framework
 bool InitializeWindow(HINSTANCE hInstance, int ShowWnd, int width, int height, bool windowed);
 int messageloop();
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
+//D3D-game loop
+bool InitializeDirect3dApp(HINSTANCE hInstance);
+bool InitScene();
+void DrowScene();
+////////////////////////////////////
+
 // Entry point
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
+	//Initialize Wnd and bind hwnd
 	if (!InitializeWindow(hInstance, nShowCmd, Width, Height, true))
 	{
 		MessageBox(0,  "Window Initialization - Failed",  "Error", MB_OK);
 		return 0;
 	}
-
+	//Initialize D3D window
+	if (!InitializeDirect3dApp(hInstance))
+	{
+		MessageBox(0, "Direct3D Initialization - Failed", "Error", MB_OK);
+		return 0;
+	}
+	//Initialize D3D scene
+	if (!InitScene())
+	{
+		MessageBox(0, "Scene Initialization - Failed", "Error", MB_OK);
+		return 0;
+	}
 	messageloop();
 
 	return 0;
