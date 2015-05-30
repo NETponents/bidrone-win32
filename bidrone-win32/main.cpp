@@ -11,6 +11,19 @@
 #include <xnamath.h>
 
 ////////////////////////////////////
+//Structs
+struct Vertex
+{
+	Vertex()
+	{
+
+	}
+	Vertex(float x, float y, float z) : pos(x, y, z){}
+	XMFLOAT3 pos;
+};
+////////////////////////////////////
+
+////////////////////////////////////
 // Global variables
 
 //Wnd
@@ -19,7 +32,7 @@ HWND hwnd = NULL;
 const int Width = 800;
 const int Height = 600;
 
-//D3D10
+//D3D11
 IDXGISwapChain* SwapChain;
 ID3D11Device* d3d11Device;
 ID3D11DeviceContext* d3d11DevCon;
@@ -32,6 +45,8 @@ float blue = 0.0f;
 int colormodr = 1;
 int colormodg = 1;
 int colormodb = 1;
+D3D11_INPUT_ELEMENT_DESC layout[] = { { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 }, };
+UINT numElements = ARRAYSIZE(layout);
 ////////////////////////////////////
 
 ////////////////////////////////////
@@ -49,6 +64,8 @@ bool InitScene();
 void UpdateScene();
 void DrawScene();
 ////////////////////////////////////
+
+
 
 // Entry point
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
@@ -211,6 +228,12 @@ void ReleaseObjects()
 	SwapChain->Release();
 	d3d11Device->Release();
 	d3d11DevCon->Release();
+	triangleVertBuffer->Release();
+	VS->Release();
+	PS->Release();
+	VS_Buffer->Release();
+	PS_Buffer->Release();
+	vertLayout->Release();
 }
 bool InitScene()
 {
