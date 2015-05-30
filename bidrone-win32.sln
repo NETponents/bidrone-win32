@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bidrone-win32", "bidrone-win32\bidrone-win32\bidrone-win32.csproj", "{E40E1E5E-1EE8-4E15-86FE-77F235270DB5}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "bidrone-win32Content", "bidrone-win32\bidrone-win32Content\bidrone-win32Content.contentproj", "{DD09E0BA-CBB7-4B8A-8B8D-743FBEA4761C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E40E1E5E-1EE8-4E15-86FE-77F235270DB5}.Debug|x86.ActiveCfg = Debug|x86
+		{E40E1E5E-1EE8-4E15-86FE-77F235270DB5}.Debug|x86.Build.0 = Debug|x86
+		{E40E1E5E-1EE8-4E15-86FE-77F235270DB5}.Release|x86.ActiveCfg = Release|x86
+		{E40E1E5E-1EE8-4E15-86FE-77F235270DB5}.Release|x86.Build.0 = Release|x86
+		{DD09E0BA-CBB7-4B8A-8B8D-743FBEA4761C}.Debug|x86.ActiveCfg = Debug|x86
+		{DD09E0BA-CBB7-4B8A-8B8D-743FBEA4761C}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
