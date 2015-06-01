@@ -1,3 +1,5 @@
+#define DEBUGHUD
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
+using bidrone_win32.ScreenRotator;
+
 namespace bidrone_win32
 {
     /// <summary>
@@ -18,6 +22,7 @@ namespace bidrone_win32
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        ScreenManager sm;
 
         public Game1()
         {
@@ -34,7 +39,10 @@ namespace bidrone_win32
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            sm = new ScreenManager();
+            sm.addScreen("main_menu", new screens.screen_mainmenu());
+            sm.loadScreens("main_menu", Content.ServiceProvider);
+            sm.setScreen("main_menu");
             base.Initialize();
         }
 
@@ -68,7 +76,14 @@ namespace bidrone_win32
         {
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            {
                 this.Exit();
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                this.Exit();
+            }
+            sm.Update(graphics.GraphicsDevice, ref spriteBatch, this.Content, ref gameTime);
 
             // TODO: Add your update logic here
 
@@ -81,8 +96,8 @@ namespace bidrone_win32
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            //GraphicsDevice.Clear(Color.CornflowerBlue);
+            sm.Draw(graphics.GraphicsDevice, ref spriteBatch, this.Content, ref gameTime);
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);

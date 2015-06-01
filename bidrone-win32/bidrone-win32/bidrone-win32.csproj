@@ -110,6 +110,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="ScreenRotator.cs" />
+    <Compile Include="screen_mainmenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
